@@ -28,9 +28,7 @@ terraform plan module
 terraform apply module
 ```
 
-## details
-
-### overview of components
+## overview of components
 
 * apigateway: proxy
 
@@ -46,7 +44,7 @@ storage for zip files containing request handler code
 a function which will be invoked by apigateway using lambda proxy integrations
 and execute request handler code stored on s3
 
-### writing custom handlers
+## writing custom handlers
 
 with lambda proxy integration, apigateway maps the entire client request to the
 input event parameter of the request handler as follows:
