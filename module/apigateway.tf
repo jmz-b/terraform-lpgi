@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "proxy" {
-	name = "${var.name}"
+	name = "${var.name}-proxy"
 }
 
 # root resource
@@ -47,11 +47,11 @@ resource "aws_api_gateway_integration" "proxy_greedy_handler_integration" {
 # stage
 
 resource "aws_api_gateway_deployment" "proxy_deployment" {
+	rest_api_id= "${aws_api_gateway_rest_api.proxy.id}"
+	stage_name = "${var.stage}"
+	variables = {}
 	depends_on = [
 		"aws_api_gateway_integration.proxy_root_handler_integration",
 		"aws_api_gateway_integration.proxy_greedy_handler_integration",
 	]
-	rest_api_id= "${aws_api_gateway_rest_api.proxy.id}"
-	stage_name = "${var.stage}"
-	variables = {}
 }
