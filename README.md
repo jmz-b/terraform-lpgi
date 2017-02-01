@@ -1,7 +1,7 @@
 # terraform-lpgi: lambda proxy gateway interface
 
 this terraform module provides a transparent https gateway that will forward
-all requests to an arbitary handler.
+all requests to an arbitary handler
 
 ## components overview
 
@@ -9,7 +9,7 @@ all requests to an arbitary handler.
   catch-all ANY method and lambda proxy integration to map all requests to a
   handler
 
-* dist (s3): a storage bucket for request handler distributions
+* dist (s3): a storage bucket for request handler distribution files
 
 * handler (lambda): a lambda function which executes the request handler code
   when invoked with apigateway proxy integration
@@ -18,7 +18,7 @@ there is no routing, ie: a request to any path invokes the same handler code
 
 ## quick start example
 
-this example will provision and deploy and example lpgi application.
+this example will provision and deploy an example lpgi application.
 
 the application will accept any request and echo it back to the user in the
 form of a lambda proxy integration mapping object.
@@ -37,17 +37,14 @@ aws_region = "eu-west-1"
 EOF
 ```
 
-* bootstrap
-
-this is create all the component resources and provide a default request
-handler.
+* create all the component resources and provide a default request handler.
 
 ```
 terraform plan module
 terraform apply module
 ```
 
-* deploy new request handler
+* deploy the example request handler
 
 ```
 aws s3 cp examples/echo.zip s3://echo-dist/handler.zip
@@ -74,12 +71,13 @@ Archive:  examples/echo.zip
       115                     2 files
 ```
 
-`main.py` must be valid python code and define a function named `handler`
+`main.py` must be valid python code and define a top-level function named
+`handler`
 
 ## handler function interface
 
-with the lambda proxy integration, apigateway maps the entire client request to
-the input request handler event parameter as follows:
+with lambda proxy integration, apigateway maps the entire client request to
+the request handler event parameter as follows:
 
 ```
 {
@@ -107,14 +105,14 @@ the request handler must respond with an object in the following format:
 }
 ```
 
-for example, here is the code for the default request handler
+for example, here is the code for the default request handler:
 
 ```
 def handler(event, context):
     return {'statusCode': 404, 'headers': {}, 'body': 'nothing to see here'}
 ```
 
-### relevant aws developer guides
+## relevant aws developer guides
 
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
