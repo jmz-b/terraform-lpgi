@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "dist_bucket" {
 	}
 }
 
-resource "aws_s3_bucket_object" "default_dist_object" {
+resource "aws_s3_bucket_object" "default_dist" {
 	depends_on = ["aws_s3_bucket.dist_bucket"]
 	bucket = "${var.name}-dist"
 	key = "${var.stage}.zip"
