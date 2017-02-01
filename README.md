@@ -3,13 +3,13 @@
 this terraform module provides a transparent https gateway that will forward
 all requests to an arbitary handler.
 
-## component overview
+## components overview
 
 * proxy (apigateway): an https host that uses a greedy path variable, the
   catch-all ANY method and lambda proxy integration to map all requests to a
   handler
 
-* dist (s3): a storage bucket for request handler code
+* dist (s3): a storage bucket for request handler distributions
 
 * handler (lambda): a lambda function which executes the request handler code
   when invoked with apigateway proxy integration
@@ -18,9 +18,10 @@ there is no routing, ie: a request to any path invokes the same handler code
 
 ## quick start example
 
-this example will provision and deploy and example lpgi application. this
-application will accept any request and echo it back to the user in the form of
-a lambda proxy integration mapping object.
+this example will provision and deploy and example lpgi application.
+
+the application will accept any request and echo it back to the user in the
+form of a lambda proxy integration mapping object.
 
 * provide user and project specific settings
 
