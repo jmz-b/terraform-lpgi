@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "proxy" {
-	name = "${var.name}-${var.stage}-proxy"
+	name = "${var.name}-proxy"
 }
 
 # root resource
