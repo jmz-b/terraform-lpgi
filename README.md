@@ -104,10 +104,6 @@ aws s3 cp handler.zip s3://<app-name>-dist/handler.zip
 aws lambda update-function-code --function-name '<app-name>-handler' --s3-bucket '<app-name>-dist' --s3-key 'handler.zip'
 ```
 
-### examples
-
-see the `examples` directory
-
 ## relevant aws developer guides
 
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
