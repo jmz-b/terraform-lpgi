@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "handler" {
-	function_name = "${var.name}-${var.stage}-handler"
+	function_name = "${var.name}-handler"
 	runtime = "python2.7"
 	handler = "main.handler"
 	s3_bucket = "${aws_s3_bucket_object.default_dist.bucket}"

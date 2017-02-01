@@ -44,11 +44,11 @@ resource "aws_api_gateway_integration" "proxy_greedy_handler_integration" {
 	uri = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:${aws_lambda_function.handler.function_name}/invocations"
 }
 
-# stage
+# deploy
 
 resource "aws_api_gateway_deployment" "proxy_deployment" {
 	rest_api_id= "${aws_api_gateway_rest_api.proxy.id}"
-	stage_name = "${var.stage}"
+	stage_name = "latest"
 	variables = {}
 	depends_on = [
 		"aws_api_gateway_integration.proxy_root_handler_integration",

@@ -16,7 +16,6 @@ export AWS_DEFAULT_REGION="eu-west-1"
 
 cat << EOF > terraform.tfvars
 name = "<app-name>"
-stage = "dev"
 aws_account_id = "xxxxxxxxxxxx"
 aws_region = "eu-west-1"
 EOF

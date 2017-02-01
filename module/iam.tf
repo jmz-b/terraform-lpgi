@@ -1,5 +1,5 @@
 resource "aws_iam_role" "handler_role" {
-	name = "${var.name}-${var.stage}-handler"
+	name = "${var.name}-handler"
 	assume_role_policy = <<EOF
 {
 	"Version": "2012-10-17",
