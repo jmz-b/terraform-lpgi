@@ -39,7 +39,7 @@ terraform apply module
 
 ## handlers
 
-the default handler can be replaced by building a new handler distibution,
+the default handler can be replaced by building a new handler distribution,
 uploading it to s3 and updating the handler lambda function
 
 ### handler distibution format
