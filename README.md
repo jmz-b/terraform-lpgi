@@ -1,8 +1,9 @@
 # terraform-lpgi: lambda proxy gateway interface
 
 this terraform module provides a transparent https gateway that will forward
-all requests to an arbitary handler. there is no routing, ie: a request to any
-path invokes the same handler code
+all requests to an arbitary handler.
+
+there is no routing, ie: a request to any path invokes the same handler code
 
 ## quick start
 
@@ -14,7 +15,7 @@ export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 export AWS_DEFAULT_REGION="eu-west-1"
 
 cat << EOF > terraform.tfvars
-name = "lpgi-app"
+name = "<app-name>"
 stage = "dev"
 aws_account_id = "xxxxxxxxxxxx"
 aws_region = "eu-west-1"
@@ -41,7 +42,7 @@ storage for zip files containing request handler code
 
 * lambda: handler
 
-a function which will be invoked by apigateway using lambda proxy integrations
+a function which will be invoked by apigateway using lambda proxy integration
 and execute request handler code stored on s3
 
 ## writing custom handlers
