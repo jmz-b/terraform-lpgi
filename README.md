@@ -32,7 +32,7 @@ export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 export AWS_DEFAULT_REGION="eu-west-1"
 
 cat << EOF > terraform.tfvars
-name = "echo"
+name = "example"
 stage = "dev"
 aws_account_id = "xxxxxxxxxxxx"
 aws_region = "eu-west-1"
