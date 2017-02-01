@@ -22,6 +22,30 @@ provides a function which will be invoked by apigateway using lambda proxy
 integrations, executing the request handler code stored in the s3 dist bucket
 
 
+#### quick start
+
+provide user and project specific settings
+
+```
+export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX"
+export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+export AWS_DEFAULT_REGION="eu-west-1"
+
+cat << EOF > terraform.tfvars
+name = "echo"
+stage = "dev"
+aws_account_id = "xxxxxxxxxxxx"
+aws_region = "eu-west-1"
+EOF
+```
+
+bootstrap
+
+```
+terraform plan module
+terraform apply module
+```
+
 #### writing custom handlers
 
 with lambda proxy integration, apigateway maps the entire client request to the
@@ -50,30 +74,6 @@ the request handler must return an object of the following format:
     "headers": { "headerName": "headerValue", ... },
     "body": "..."
 }
-```
-
-#### deploying by example
-
-provide user and project specific settings
-
-```
-export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX"
-export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-export AWS_DEFAULT_REGION="eu-west-1"
-
-cat << EOF > terraform.tfvars
-name = "echo"
-stage = "dev"
-aws_account_id = "xxxxxxxxxxxx"
-aws_region = "eu-west-1"
-EOF
-```
-
-bootstrap provider
-
-```
-terraform plan module
-terraform apply module
 ```
 
 ### relevant aws developer guides
