@@ -3,6 +3,17 @@
 this terraform module provides a transparent https gateway that will forward
 all requests to an arbitary handler.
 
+## overview
+
+* proxy (apigateway): an https host that uses a greedy path variable, the
+  catch-all ANY method and lambda proxy integration to map all requests to a
+  handler
+
+* dist (s3): a storage bucket for request handler code
+
+* handler (lambda): a lambda function which executes the request handler code
+  when invoked with apigateway proxy integration
+
 there is no routing, ie: a request to any path invokes the same handler code
 
 ## quick start
@@ -28,50 +39,10 @@ terraform plan module
 terraform apply module
 ```
 
-## overview of components
-
-* apigateway: proxy
-
-an https host that uses a greedy path variable, the catch-all ANY method and
-lambda proxy integration to map all requests to a handler
-
-* s3 bucket: dist
-
-storage for zip files containing request handler code
-
-* lambda: handler
-
-a function which will be invoked by apigateway using lambda proxy integration
-and execute request handler code stored on s3
-
-## writing custom handlers
-
-with lambda proxy integration, apigateway maps the entire client request to the
-input event parameter of the request handler as follows:
+* deploy a request handler
 
 ```
-{
-    "resource": "Resource path",
-    "path": "Path parameter",
-    "httpMethod": "Incoming request's method name"
-    "headers": {Incoming request headers}
-    "queryStringParameters": {query string parameters }
-    "pathParameters":  {path parameters}
-    "stageVariables": {Applicable stage variables}
-    "requestContext": {Request context, including authorizer-returned key-value pairs}
-    "body": "A JSON string of the request payload."
-    "isBase64Encoded": "A boolean flag to indicate if the applicable request payload is Base64-encode"
-}
-```
 
-the request handler must return an object of the following format:
-
-```
-{
-    "statusCode": httpStatusCode,
-    "headers": { "headerName": "headerValue", ... },
-    "body": "..."
-}
 ```
 
 ### relevant aws developer guides

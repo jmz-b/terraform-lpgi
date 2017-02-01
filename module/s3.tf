@@ -4,9 +4,9 @@ resource "aws_s3_bucket" "dist_bucket" {
 }
 
 resource "aws_s3_bucket_object" "default_dist" {
-	key = "${var.name}-dist.zip"
+	key = "handler.zip"
 	bucket = "${var.name}-dist"
-	source = "${path.module}/dist.zip"
-	etag = "${md5(file("${path.module}/dist.zip"))}"
+	source = "${path.module}/handler.zip"
+	etag = "${md5(file("${path.module}/handler.zip"))}"
 	depends_on = ["aws_s3_bucket.dist_bucket"]
 }
