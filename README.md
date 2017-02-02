@@ -17,6 +17,8 @@ module input variables
 ----------------------
 
  - `name`
+ - `aws_account_id`
+ - `aws_region`
 
 module usage
 ------------
@@ -47,8 +49,8 @@ new handler archive
 
 for example using aws cli:
 
-```
-aws lambda update-function-code --function-name '<app-name>-handler' --zip-file 'fileb://handler.zip'
+```sh
+aws lambda update-function-code --function-name '<app-name>-handler' --zip-file 'fileb://<app-handler>.zip'
 ```
 
 handler archive format
@@ -82,7 +84,7 @@ functional interface
 with lambda proxy integration, apigateway maps the entire client request to
 the input event parameter as follows:
 
-```
+```js
 {
 	"resource": "Resource path",
 	"path": "Path parameter",
@@ -100,7 +102,7 @@ the input event parameter as follows:
 
 the handler must respond with an object in the following format:
 
-```
+```js
 {
 	"statusCode": httpStatusCode,
 	"headers": { "headerName": "headerValue", ... },
