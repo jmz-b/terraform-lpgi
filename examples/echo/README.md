@@ -34,5 +34,14 @@ deploy
 ------
 
 ```sh
-aws lambda update-function-code --function-name 'echo-handler' --zip-file 'fileb://handler.zip'
+aws lambda update-function-code \
+	--function-name "$(terraform output handler_function_name)" \
+	--zip-file 'fileb://handler.zip'
+```
+
+test
+----
+
+```sh
+curl https://$(terraform output proxy_rest_api_id).execute-api.eu-west-1.amazonaws.com/default
 ```
