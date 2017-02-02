@@ -24,7 +24,7 @@ module usage
 ------------
 
 ```js
-module "lpgi-app" {
+module "<app-name>" {
 	source = "github.com/jmz-b/tf_lpgi/module"
 	name = "<app-name>"
 	aws_account_id = "<app-aws-account-id>"
