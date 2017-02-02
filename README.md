@@ -108,7 +108,8 @@ the handler must respond with an object in the following format:
 additional resources
 --------------------
 
-* see the `examples` directory for more infomation on using the module
+* see the `examples` directory for more infomation developing request handlers
+  usings this module
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html
