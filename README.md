@@ -32,7 +32,6 @@ outputs
 -------
 
  - `proxy_rest_api_id`
- - `rest_api_id`
  - `handler_function_name`
  - `handler_role_name`
 
