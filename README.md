@@ -6,25 +6,27 @@ requests to a python handler
 
 this module creates the following resources
 
-- proxy (apigateway): `rest_api` resource that maps client requests to the
+ - proxy (apigateway): `rest_api` resource that maps client requests to the
   handlers event parameter. this is achieved using a greedy path variable, the
   catch-all ANY method and lambda proxy integration.
 
-- handler (lambda): `python27` lambda function invoked by the proxy. the
+ - handler (lambda): `python27` lambda function invoked by the proxy. the
   default handler always returns a `404` integration response
 
 module input variables
 ----------------------
 
-- `name`
+ - `name`
 
 module usage
 ------------
 
 ```js
 module "lpgi-app" {
-  source = "github.com/jmz-b/tf_lpgi/module"
-  name   = "<app-name>"
+	source = "github.com/jmz-b/tf_lpgi/module"
+	name  = "<app-name>"
+	aws_account_id = "<app-aws-account-id>"
+	aws_region = "<app-aws-region>"
 }
 ```
 
@@ -33,7 +35,9 @@ outputs
 
  - `proxy_rest_api_id`
  - `handler_function_name`
+ - `handler_function_arn`
  - `handler_role_name`
+ - `handler_role_arn`
 
 lamba proxy gateway interface handlers
 ======================================
@@ -107,8 +111,8 @@ the handler must respond with an object in the following format:
 additional resources
 --------------------
 
-* see the `examples` directory for more infomation developing request handlers
-  usings this module
-* http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
-* http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
-* http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html
+ - see the `examples` directory for more infomation developing request handlers
+   usings this module
+ - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
+ - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
+ - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html
