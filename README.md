@@ -1,46 +1,55 @@
-# terraform-lpgi: lambda proxy gateway interface
+lambda proxy gateway interface terraform module
+===============================================
 
-this terraform module provides a transparent https gateway that will forward
-all requests to an arbitary python handler
+a terraform module to provide a transparent https proxy that will forward all
+requests to a python handler
 
-## components overview
+this module creates the following resources
 
-* proxy (apigateway): https gateway using a greedy path variable, the catch-all
-  ANY method and lambda proxy integration
+- proxy (apigateway): `rest_api` resource that maps client requests to the
+  handlers event parameter. this is achieved using a greedy path variable, the
+  catch-all ANY method and lambda proxy integration.
 
-* handler (lambda): python function invoked by apigateway proxy
+- handler (lambda): `python27` lambda function invoked by the proxy. the
+  default handler always returns a `404` integration response
 
-there is no routing, ie: a request to any path invokes the same handler code
+module input variables
+----------------------
 
-## quick start example
+- `name`
 
-provide user and project specific settings
+module usage
+------------
 
-```
-export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX"
-export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-export AWS_DEFAULT_REGION="eu-west-1"
-
-cat << EOF > terraform.tfvars
-name = "<app-name>"
-aws_account_id = "xxxxxxxxxxxx"
-aws_region = "eu-west-1"
-EOF
-```
-
-create all the component resources and provide a default request handler.
-
-```
-terraform plan module
-terraform apply module
+```js
+module "lpgi-app" {
+  source = "github.com/jmz-b/tf_lpgi/module"
+  name   = "<app-name>"
+}
 ```
 
-## handlers
+outputs
+-------
 
-the default handler can be replaced by updating the lambda function with a new
-handler archive
+ - `proxy_rest_api_id`
+ - `rest_api_id`
+ - `handler_function_name`
+ - `handler_role_name`
 
-### handler archive format
+lamba proxy gateway interface handlers
+======================================
+
+the default handler lambda function code can be replaced by updating it with a
+new handler archive
+
+for example using aws cli:
+
+```
+aws lambda update-function-code --function-name '<app-name>-handler' --zip-file 'fileb://handler.zip'
+```
+
+handler archive format
+----------------------
 
 ```
 $ unzip -l module/handler.zip
@@ -64,7 +73,8 @@ def handler(event, context):
     return {'statusCode': 404, 'headers': {}, 'body': 'nothing to see here'}
 ```
 
-### functional interface
+functional interface
+--------------------
 
 with lambda proxy integration, apigateway maps the entire client request to
 the input event parameter as follows:
@@ -95,14 +105,10 @@ the handler must respond with an object in the following format:
 }
 ```
 
-### deploying
+additional resources
+--------------------
 
-```
-aws lambda update-function-code --function-name '<app-name>-handler' --zip-file 'fileb://handler.zip'
-```
-
-## relevant aws developer guides
-
+* see the `examples` directory for more infomation on using the module
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
 * http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html
