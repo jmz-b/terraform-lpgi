@@ -10,8 +10,6 @@ all requests to an arbitary python handler
 
 * handler (lambda): python function invoked by apigateway proxy
 
-* dist (s3): storage bucket for handler distributions
-
 there is no routing, ie: a request to any path invokes the same handler code
 
 ## quick start example
@@ -39,10 +37,10 @@ terraform apply module
 
 ## handlers
 
-the default handler can be replaced by building a new handler distribution,
-uploading it to s3 and updating the handler lambda function
+the default handler can be replaced by updating the lambda function with a new
+handler archive
 
-### handler distibution format
+### handler archive format
 
 ```
 $ unzip -l module/handler.zip
@@ -100,8 +98,7 @@ the handler must respond with an object in the following format:
 ### deploying
 
 ```
-aws s3 cp handler.zip s3://<app-name>-dist/handler.zip
-aws lambda update-function-code --function-name '<app-name>-handler' --s3-bucket '<app-name>-dist' --s3-key 'handler.zip'
+aws lambda update-function-code --function-name '<app-name>-handler' --zip-file 'fileb://handler.zip'
 ```
 
 ## relevant aws developer guides
