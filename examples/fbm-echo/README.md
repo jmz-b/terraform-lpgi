@@ -1,5 +1,5 @@
-echo-fbm
-=========
+fbm-echo
+========
 
 example lpgi application. implements a facebook messenger webhook and echos
 messages back to the client.
