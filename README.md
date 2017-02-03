@@ -20,7 +20,7 @@ module input variables
  - `aws_account_id`
  - `aws_region`
  - `stage` (optional)
- - `handler_environment_variables (optional)
+ - `handler_environment_variables` (optional)
 
 module usage
 ------------
