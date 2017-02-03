@@ -7,7 +7,7 @@ requests to a python handler
 this module creates the following resources
 
  - proxy (apigateway): `rest_api` resource that maps client requests to the
-  handlers event parameter. this is achieved using a greedy path variable, the
+  handlers event parameter. utilizes using a greedy path variable, the
   catch-all ANY method and lambda proxy integration.
 
  - handler (lambda): `python27` lambda function invoked by the proxy. the
