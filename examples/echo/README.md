@@ -7,7 +7,7 @@ input paramter and echoed back in the response body
 config
 ------
 
-```
+```sh
 cat << EOF > terraform.tfvars
 aws_account_id = "xxxxxxxxxxxx"
 aws_region = "eu-west-1"
