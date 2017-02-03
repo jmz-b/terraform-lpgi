@@ -1,4 +1,4 @@
-echo-event
+event-echo
 ==========
 
 example lpgi application. client requests will be mapped to the handlers event
