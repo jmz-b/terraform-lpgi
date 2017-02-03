@@ -61,7 +61,7 @@ def method_router(event):
 
 def handler(event, context):
     """
-    entry point. handler requests to the root path, return a `404` for
+    entry point. handle requests to the root path, return a `404` for
     everything else
     """
 
