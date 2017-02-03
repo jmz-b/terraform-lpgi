@@ -1,4 +1,4 @@
-event-echo
+OSRM directions
 ==========
 
 OSRM routing engine example.
