@@ -4,6 +4,9 @@ resource "aws_lambda_function" "handler" {
 	handler = "main.handler"
 	filename = "${path.module}/handler.zip"
 	role = "${aws_iam_role.handler_role.arn}"
+	environment {
+		variables = "${var.handler_environment_variables}"
+        }
 }
 
 resource "aws_lambda_permission" "handler_apigateway_permission" {
