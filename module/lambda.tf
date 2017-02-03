@@ -5,7 +5,7 @@ resource "aws_lambda_function" "handler" {
 	filename = "${path.module}/handler.zip"
 	role = "${aws_iam_role.handler_role.arn}"
 	environment {
-		variables = "${var.handler_environment_variables}"
+		variables = "${merge(var.handler_environment_variables, map("stage", var.stage))}"
         }
 }
 

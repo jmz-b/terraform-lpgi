@@ -4,7 +4,7 @@ variable "name" {
 
 variable "stage" {
 	type = "string"
-	default = "default"
+	default = "latest"
 }
 
 variable "aws_region" {
@@ -17,7 +17,5 @@ variable "aws_account_id" {
 
 variable "handler_environment_variables" {
 	type = "map"
-	default = {
-		stage = "default"
-	}
+	default = {}
 }
