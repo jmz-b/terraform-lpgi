@@ -43,5 +43,5 @@ test
 ----
 
 ```sh
-curl https://$(terraform output proxy_rest_api_id).execute-api.eu-west-1.amazonaws.com/default
+curl https://$(terraform output proxy_rest_api_id).execute-api.eu-west-1.amazonaws.com/latest
 ```
