@@ -116,17 +116,16 @@ TODO
 ----
 
 - make `resource "aws_iam_role" "handler_role` a module input paramter
-- use `data "archive_file"`to create the default handler.zip
+- use `data "archive_file` to create the default `handler.zip`
 - example: facebook echo bot
 - example: static site
 - example: sns publisher
 
-
 additional resources
 --------------------
 
- - see the `examples` directory for more infomation on developing request
-   handlers usings this module
- - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
- - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
- - http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.htmlll
+- see the `examples` directory for more infomation on developing request
+  handlers usings this module
+- http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
+- http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html
+- http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.htmlll
